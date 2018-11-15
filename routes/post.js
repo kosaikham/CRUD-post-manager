@@ -3,6 +3,10 @@ const router = express.Router();
 const validatePostInput = require("../validation/post");
 var { authenticate } = require("../middleware/authenticate");
 
+const axios = require('axios');
+const redis = require('redis');
+const client = redis.createClient();
+
 const User = require("../models/User");
 const Post = require("../models/Post");
 
@@ -69,7 +73,7 @@ router.delete("/delete/:id", authenticate, (req, res) => {
     })
 })
 
-router.get("/all", (req, res) => {
+const getAllPosts = (req, res) => {
   Post.find()
     .sort({date: -1})
     .populate("user")
@@ -85,8 +89,42 @@ router.get("/all", (req, res) => {
           time: post.date
         };
       });
-    res.json(allPosts)
+    // res.json(allPosts)
+      client.setex(alposts, 3600, JSON.stringify(allPosts));
+      res.send(allPosts);
     });
-});
+};
+
+const getCachePosts = (req, res) => {
+  client.get(alposts, (err, result) => {
+    if (result) {
+      res.send(result);
+    } else {
+      getAllPosts(req, res);
+    }
+  });
+}
+
+router.get("/all", getCachePosts)
+
+// router.get("/all", (req, res) => {
+//   Post.find()
+//     .sort({date: -1})
+//     .populate("user")
+//     .exec(function(err, posts) {
+//       if (err) return res.status(400).json(err);
+//       const allPosts = posts.map(post => {
+//         return {
+//           id: post.id,
+//           title: post.title,
+//           content: post.content,
+//           name: post.user.name,
+//           userId: post.user.id,
+//           time: post.date
+//         };
+//       });
+//     res.json(allPosts)
+//     });
+// });
 
 module.exports = router;
