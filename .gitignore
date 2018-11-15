@@ -1,1 +1,7 @@
 node_modules
+
+secret.js
+
+frontend/config
+
+frontend/build

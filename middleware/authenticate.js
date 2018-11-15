@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const SECRET = require('../secret');
 
 let authenticate = (req, res, next) => {
     let token = req.header('Authorization');
 	try{
-		jwt.verify(token, 'secret', (err, decoded) => {
+		jwt.verify(token, SECRET.SECRET, (err, decoded) => {
             if(err){
                 const errors = {name: 'Token error in try verify'}
                 console.log('jwt error')

@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
 var {authenticate} = require('../middleware/authenticate');
+const SECRET = require('../secret');
 
 const User = require('../models/User');
 
@@ -39,7 +40,7 @@ router.post('/register', (req, res) => {
                                         id: user.id,
                                         name: user.name
                                     }
-                                    jwt.sign(payload, 'secret', {
+                                    jwt.sign(payload, SECRET.SECRET, {
                                         expiresIn: 3600
                                     }, (err, token) => {
                                         if(err) console.error('There is some error in token', err);
@@ -83,7 +84,7 @@ router.post('/login', (req, res) => {
                             id: user.id,
                             name: user.name
                         }
-                        jwt.sign(payload, 'secret', {
+                        jwt.sign(payload, SECRET.SECRET, {
                             expiresIn: 3600
                         }, (err, token) => {
                             if(err) console.error('There is some error in token', err);
@@ -104,14 +105,6 @@ router.post('/login', (req, res) => {
                     }
                 })
         })
-})
-
-router.get('/me', authenticate, (req, res) => {
-    return res.json({
-        id: req.user.id,
-        name: req.user.name,
-        email: req.user.email
-    })
 })
 
 module.exports = router;
