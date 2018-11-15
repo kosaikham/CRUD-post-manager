@@ -32,13 +32,6 @@ class Toolbar extends Component {
           </Collapse>
         </Navbar>
       </div>
-
-      //   <div>
-      //
-      //     <div>
-      //       <NavigationItems />
-      //     </div>
-      //   </div>
     );
   }
 }

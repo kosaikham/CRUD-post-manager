@@ -170,7 +170,6 @@ class Login extends Component {
       <div className="container pl-0 pr-0">
         <div className="LoginForm">
           {redirect}
-         
             <div className="login-form">
               <div className="main-div">
                 <div className="panel">
@@ -229,7 +228,6 @@ class Login extends Component {
                 </form>
               </div>
             </div>
-          
         </div>
       </div>
     );

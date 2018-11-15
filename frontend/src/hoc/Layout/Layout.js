@@ -3,9 +3,19 @@ import { Route, withRouter, Redirect, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import Toolbar from "../../component/Toolbar/Toolbar";
 import Home from "../../container/Home/Home";
-import Login from "../../container/Login/Login";
-import MyPosts from "../../container/MyPosts/MyPosts";
-import Logout from "../../component/NavigationItems/Logout/Logout";
+import LazyLoading from '../LazyLoading/LazyLoading';
+
+const Login = LazyLoading(() => {
+  return import('../../container/Login/Login');
+})
+
+const MyPosts = LazyLoading(() => {
+  return import('../../container/MyPosts/MyPosts');
+})
+
+const Logout = LazyLoading(() => {
+  return import('../../component/NavigationItems/Logout/Logout');
+})
 
 class Layout extends Component {
   render() {

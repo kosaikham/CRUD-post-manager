@@ -104,7 +104,6 @@ export const addPost = (title, content) => {
                 dispatch(postSuccess(res.data))
             })
             .catch(err => {
-                console.log(err);
                 dispatch(postFail(err))
             })
     }

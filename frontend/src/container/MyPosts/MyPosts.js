@@ -78,21 +78,11 @@ class MyPosts extends Component {
                         touched: false
                       }
                 }
-                // formControls: {
-                //     title: post.title,
-                //     content: post.content,
-                //     id: post.id
-                // }
             }
         })
     }
 
     onInputChange = (event, type) => {
-        // const value = event.target.value;
-        // const updatedObj = {...this.state.formControls, [type]: value};
-        // this.setState({
-        //     formControls: updatedObj
-        // })
         const updatedPostElement = updatedObject(this.state.formControls[type],{
             value: event.target.value,
             valid: checkValidity(
@@ -184,21 +174,6 @@ class MyPosts extends Component {
                     show={this.state.isEditPost} 
                     clicked={this.onAddEditPostHandler}
                     modalTitle="EDIT POST">
-                {/* <form onSubmit={this.onPostUpdate}>
-                    <input 
-                        type='text' 
-                        name='title' 
-                        onChange={event => this.onInputChange(event, 'title')} 
-                        value={this.state.formControls.title}
-                        placeholder='title'/>
-                    <input 
-                        type='text' 
-                        name='content' 
-                        onChange={event => this.onInputChange(event, 'content')} 
-                        value={this.state.formControls.content}
-                        placeholder='content'/>
-                    <button>Update</button>
-                </form> */}
                 <form onSubmit={this.onPostUpdate}>
                         <div className="form-group">
                             <input 

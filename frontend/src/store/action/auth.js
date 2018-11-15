@@ -82,7 +82,6 @@ export const authCheckAuto = () => {
             if(expirationDate <= new Date()){
                 dispatch(logout())
             }else{
-                console.log('auto check success');
                 const newExpirationDate = (new Date(expirationDate).getTime() - new Date().getTime()) / 1000;
                 setAuthToken(localStorage.getItem('token'));
                 dispatch(authSuccess(localStorage.getItem('token'), localStorage.getItem('userId'), true))
