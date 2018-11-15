@@ -89,7 +89,7 @@ module.exports = function(proxy, allowedHost) {
     public: allowedHost,
     proxy: {
         '/api/**': {
-          target: 'http://localhost:35418'
+          target: 'http://localhost:5000'
         }
     },
     before(app, server) {
