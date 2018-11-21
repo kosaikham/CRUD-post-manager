@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Post from '../../component/AllPosts/Post/Post';
-import Modal from '../../component/UI/Modal/Modal';
 import { updatedObject, checkValidity } from '../../shared/utility';
 import * as actions from '../../store/action/posts';
 import "../Home/Home.css";
+
+const Modal = React.lazy(() => import('../../component/UI/Modal/Modal'));
 
 class MyPosts extends Component {
     state = {
@@ -170,7 +171,9 @@ class MyPosts extends Component {
 
         return (
             <div className="container pl-0 pr-0">
-                <Modal 
+            {this.state.isEditPost && (
+                <React.Suspense fallback="">
+                    <Modal 
                     show={this.state.isEditPost} 
                     clicked={this.onAddEditPostHandler}
                     modalTitle="EDIT POST">
@@ -203,6 +206,8 @@ class MyPosts extends Component {
                         </button>
                     </form>
                 </Modal>
+                </React.Suspense>
+            )}
                 <div className="AddPost mb-5">
                     <div className="row">
                     <div className="col-md-4">

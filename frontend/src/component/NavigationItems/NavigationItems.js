@@ -1,38 +1,36 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  Nav,
-  NavItem
-} from "reactstrap";
 import "./NavigationItems.css";
 
 class NavigationItems extends Component {
   render() {
     let navItems = (
-        <Nav className="ml-auto Link" navbar>
-            <NavItem className="m-1 p-1">
-              <NavLink to="/login" exact>Login</NavLink>
-            </NavItem>
-        </Nav>
+      <li className="nav-item m-1 p-1">
+        <NavLink to="/login" exact>
+          Login
+        </NavLink>
+      </li>
     );
     if (this.props.isAuth) {
       navItems = (
-            <Nav className="ml-auto Link" navbar>
-              <NavItem className="m-1 p-1">
-                <NavLink to="/myPosts" exact>My Posts</NavLink>
-              </NavItem>
-              <NavItem className="m-1 p-1">
-                <NavLink to="/logout">Logout</NavLink>
-              </NavItem>
-            </Nav>
+        <React.Fragment>
+          <li className="nav-item m-1 p-1">
+            <NavLink to="/myPosts" exact>
+              My Posts
+            </NavLink>
+          </li>
+          <li className="nav-item m-1 p-1">
+            <NavLink to="/logout">Logout</NavLink>
+          </li>
+        </React.Fragment>
       );
     }
-    return ( 
-        <React.Fragment>
-             {navItems}
-        </React.Fragment>
-        );
+    return (
+      <React.Fragment>
+        <ul className="navbar-nav Link ml-auto">{navItems}</ul>
+      </React.Fragment>
+    );
   }
 }
 

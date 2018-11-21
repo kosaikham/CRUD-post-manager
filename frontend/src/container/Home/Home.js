@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import AllPosts from "../../component/AllPosts/AllPosts";
-import Modal from "../../component/UI/Modal/Modal";
 import * as actions from "../../store/action/posts";
 import { updatedObject, checkValidity } from "../../shared/utility";
 import "./Home.css";
-import { Button } from "reactstrap";
+
+const Modal = React.lazy(() => import("../../component/UI/Modal/Modal"));
 
 class Home extends Component {
   state = {
@@ -118,48 +118,55 @@ class Home extends Component {
   render() {
     return (
       <div className="container pl-0 pr-0">
-        <Modal
-          show={this.state.isAddPost}
-          clicked={this.onAddPostHandler}
-          modalTitle="ADD POST"
-        >
-          <form onSubmit={this.onPostSubmit}>
-            <div className="form-group">
-              <input
-                type="text"
-                name="title"
-                onChange={event => this.onInputChange(event, "title")}
-                value={this.state.formControls.title.value}
-                className="form-control"
-                placeholder="Title"
-              />
-            </div>
-            <div className="form-group">
-              <textarea
-                className="form-control"
-                style={{
-                  resize: "none"
-                }}
-                rows="9"
-                onChange={event => this.onInputChange(event, "content")}
-                value={this.state.formControls.content.value}
-                placeholder="Content"
-              />
-            </div>
-            <button
-              className="btn btn-primary float-right"
-              disabled={!this.state.formIsValid}
-            >
-              Publish
-            </button>
-          </form>
-        </Modal>
+        {this.state.isAddPost && (
+          <React.Suspense fallback="">
+          <Modal
+            show={this.state.isAddPost}
+            clicked={this.onAddPostHandler}
+            modalTitle="ADD POST"
+          >
+            <form onSubmit={this.onPostSubmit}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="title"
+                  onChange={event => this.onInputChange(event, "title")}
+                  value={this.state.formControls.title.value}
+                  className="form-control"
+                  placeholder="Title"
+                />
+              </div>
+              <div className="form-group">
+                <textarea
+                  className="form-control"
+                  style={{
+                    resize: "none"
+                  }}
+                  rows="9"
+                  onChange={event => this.onInputChange(event, "content")}
+                  value={this.state.formControls.content.value}
+                  placeholder="Content"
+                />
+              </div>
+              <button
+                className="btn btn-primary float-right"
+                disabled={!this.state.formIsValid}
+              >
+                Publish
+              </button>
+            </form>
+          </Modal>
+        </React.Suspense>
+        )}
         <div className="AddPost mb-5">
           <div className="row">
             <div className="col-md-4">
-              <Button onClick={this.onAddPostHandler}>
+              <button
+                className="btn btn-secondary"
+                onClick={this.onAddPostHandler}
+              >
                 {this.props.isAuth ? "Add Post" : "Login to add post"}
-              </Button>
+              </button>
             </div>
             <div className="col-md-8">
               <h2

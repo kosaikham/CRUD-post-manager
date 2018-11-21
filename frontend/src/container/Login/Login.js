@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { updatedObject, checkValidity } from "../../shared/utility";
 import * as actions from "../../store/action/auth";
-import { Alert } from "reactstrap";
 import "./Login.css";
 
 class Login extends Component {
@@ -175,7 +174,9 @@ class Login extends Component {
                 <div className="panel">
                   <h2>{this.state.isRegister ? "Register" : "Login"}</h2>
                   {this.props.error ? (
-                    <Alert color="danger">{this.props.error}</Alert>
+                      <div className="alert alert-danger" role="alert">
+                        {this.props.error}
+                      </div>
                   ) : null}
                 </div>
                 <form onSubmit={this.onSubmitHandler}>

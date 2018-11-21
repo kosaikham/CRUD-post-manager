@@ -21,11 +21,11 @@ class Layout extends Component {
   render() {
     let routes = (
       <div>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/" exact component={Home} />
-          <Redirect to="/" />
-        </Switch>
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/" exact component={Home} /> 
+            <Redirect to="/" />
+          </Switch>
       </div>
     );
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
-import { Button } from 'reactstrap';
 
 const style = {
         padding  : ".25rem .4rem",
@@ -17,11 +16,11 @@ const post = props => {
         buttons = (
             <React.Fragment>
                 <span>
-                <Button onClick={props.editHandler} style={style} color="primary" outline>Edit</Button>
+                <button className="btn btn-outline-primary" onClick={props.editHandler} style={style}>Edit</button>
                 </span>
                 &nbsp;
                 <span>
-                <Button onClick={props.deleteHandler} style={style} color="danger" outline>Delete</Button>
+                <button className="btn btn-outline-danger" onClick={props.deleteHandler} style={style}>Delete</button>
                 </span>
             </React.Fragment>
         )

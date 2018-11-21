@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import {Modal as ModalReact, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal as ModalReact, ModalHeader, ModalBody } from "reactstrap";
 
 class Modal extends Component {
-  shouldComponentUpdate(nextProps, nextState){
-    return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.show !== this.props.show ||
+      nextProps.children !== this.props.children
+    );
   }
 
-  render(){
+  render() {
     return (
       <div>
         <ModalReact isOpen={this.props.show} toggle={this.props.clicked}>
@@ -16,7 +19,6 @@ class Modal extends Component {
           </ModalBody>
         </ModalReact>
       </div>
-      
     );
   }
 }

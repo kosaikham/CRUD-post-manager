@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import NavigationItems from "../NavigationItems/NavigationItems";
-import { Collapse, Navbar, NavbarToggler } from "reactstrap";
 import './Toolbar.css';
 
 class Toolbar extends Component {
@@ -20,17 +19,19 @@ class Toolbar extends Component {
   render() {
     return (
       <div className="container pl-0 pr-0">
-        <Navbar color="light" light expand="md">
-          <div className="Brand">
-            <h3>
-            <NavLink to="/">Post Manager</NavLink>
-            </h3>
-          </div>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <NavLink className="navbar-brand" to="/">Post Manager</NavLink>
+          <button 
+            className={this.state.isOpen ? "navbar-toggler" : "navbar-toggler collapsed"} 
+            onClick={this.toggle}
+            type="button">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div 
+            className={this.state.isOpen ? "navbar-collapse collapse show " : "navbar-collapse collapse"} >
             <NavigationItems />
-          </Collapse>
-        </Navbar>
+          </div>
+        </nav>
       </div>
     );
   }
