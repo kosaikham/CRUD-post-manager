@@ -23,3 +23,84 @@ export const checkValidity = (value, rules) => {
 
     return isValid;
   }
+
+  export const formControls = {
+    formControls: {
+      title: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Title"
+        },
+        value: "",
+        validation: {
+          required: true,
+          minLength: 5
+        },
+        valid: false,
+        touched: false
+      },
+      content: {
+        elementType: "textarea",
+        elementConfig: {
+          type: "text",
+          placeholder: "Content"
+        },
+        value: "",
+        validation: {
+          required: true,
+          minLength: 10
+        },
+        valid: false,
+        touched: false
+      }
+    },
+    formIsValid: false
+  }
+
+  export const loginFormControls = {
+    formControls: {
+      name: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Name"
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
+      },
+      email: {
+        elementType: "input",
+        elementConfig: {
+          type: "email",
+          placeholder: "E-Mail"
+        },
+        value: "",
+        validation: {
+          required: true,
+          isEmail: true
+        },
+        valid: false,
+        touched: false
+      },
+      password: {
+        elementType: "input",
+        elementConfig: {
+          type: "password",
+          placeholder: "Password"
+        },
+        value: "",
+        validation: {
+          required: true,
+          minLength: 6
+        },
+        valid: false,
+        touched: false
+      }
+    },
+    formIsValid: false
+  }

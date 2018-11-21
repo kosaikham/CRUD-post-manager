@@ -224,6 +224,10 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat',
+      // Not necessary unless you consume a module using `createClass`
+      'create-react-class': 'preact-compat/lib/create-react-class'
     },
     plugins: [
       // Adds support for installing with Plug'n'Play, leading to faster installs and adding

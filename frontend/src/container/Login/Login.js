@@ -1,57 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { updatedObject, checkValidity } from "../../shared/utility";
+import { updatedObject, checkValidity, loginFormControls } from "../../shared/utility";
 import * as actions from "../../store/action/auth";
 import "./Login.css";
 
 class Login extends Component {
   state = {
-    isRegister: false,
-    formControls: {
-      name: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          placeholder: "Name"
-        },
-        value: "",
-        validation: {
-          required: true
-        },
-        valid: false,
-        touched: false
-      },
-      email: {
-        elementType: "input",
-        elementConfig: {
-          type: "email",
-          placeholder: "E-Mail"
-        },
-        value: "",
-        validation: {
-          required: true,
-          isEmail: true
-        },
-        valid: false,
-        touched: false
-      },
-      password: {
-        elementType: "input",
-        elementConfig: {
-          type: "password",
-          placeholder: "Password"
-        },
-        value: "",
-        validation: {
-          required: true,
-          minLength: 6
-        },
-        valid: false,
-        touched: false
-      }
-    },
-    formIsValid: false
+    ...loginFormControls,
+    isRegister: false
   };
 
   onInputChange = (event, type) => {
@@ -94,51 +51,8 @@ class Login extends Component {
   onClickRegisterHandler = () => {
     this.setState(prevState => {
       return {
-        isRegister: !prevState.isRegister,
-        formControls: {
-          name: {
-            elementType: "input",
-            elementConfig: {
-              type: "text",
-              placeholder: "Name"
-            },
-            value: "",
-            validation: {
-              required: true
-            },
-            valid: false,
-            touched: false
-          },
-          email: {
-            elementType: "input",
-            elementConfig: {
-              type: "email",
-              placeholder: "E-Mail"
-            },
-            value: "",
-            validation: {
-              required: true,
-              isEmail: true
-            },
-            valid: false,
-            touched: false
-          },
-          password: {
-            elementType: "input",
-            elementConfig: {
-              type: "password",
-              placeholder: "Password"
-            },
-            value: "",
-            validation: {
-              required: true,
-              minLength: 6
-            },
-            valid: false,
-            touched: false
-          }
-        },
-        formIsValid: false
+        ...loginFormControls,
+        isRegister: !prevState.isRegister
       };
     });
   };
@@ -146,7 +60,7 @@ class Login extends Component {
   render() {
     let redirect = null;
     if (this.props.isAuth) {
-      redirect = <Redirect to={this.props.authRedirectPath} />;
+      redirect = <Redirect to="/" />;
     }
 
     let nameInput = (
@@ -238,7 +152,6 @@ class Login extends Component {
 const mapStateToProps = state => {
   return {
     isAuth: state.auth.isAuth,
-    authRedirectPath: state.auth.authRedirectPath,
     error: state.auth.error
   };
 };

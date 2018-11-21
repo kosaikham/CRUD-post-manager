@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -29,6 +29,6 @@ const app = (
     </Provider>
 )
 
-ReactDOM.render(app, document.getElementById('root'));
+render(app, document.getElementById('root'));
 
 serviceWorker.unregister();

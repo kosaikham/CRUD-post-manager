@@ -6,8 +6,7 @@ const initialState = {
     name: null,
     error: null,
     loading: false,
-    isAuth: false,
-    authRedirectPath: '/'
+    isAuth: false
 }
 
 const reducer = (state = initialState, action) => {

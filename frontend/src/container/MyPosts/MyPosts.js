@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Post from '../../component/AllPosts/Post/Post';
-import { updatedObject, checkValidity } from '../../shared/utility';
+import { updatedObject, checkValidity, formControls } from '../../shared/utility';
 import * as actions from '../../store/action/posts';
 import "../Home/Home.css";
 
@@ -9,38 +9,8 @@ const Modal = React.lazy(() => import('../../component/UI/Modal/Modal'));
 
 class MyPosts extends Component {
     state = {
+        ...formControls,
         isEditPost: false,
-        formControls: {
-            title: {
-                elementType: "input",
-                elementConfig: {
-                  type: "text",
-                  placeholder: "Title"
-                },
-                value: "",
-                validation: {
-                  required: true,
-                  minLength: 5
-                },
-                valid: false,
-                touched: false
-              },
-              content: {
-                elementType: "textarea",
-                elementConfig: {
-                  type: "text",
-                  placeholder: "Content"
-                },
-                value: "",
-                validation: {
-                  required: true,
-                  minLength: 10
-                },
-                valid: false,
-                touched: false
-              }
-        },
-        formIsValid: false,
         id: ''
     }
 
@@ -138,8 +108,8 @@ class MyPosts extends Component {
                         touched: false
                       }
                 },
-                id: '',
-                formIsValid: false
+                formIsValid: false,
+                id: ''
             }
         })
     }

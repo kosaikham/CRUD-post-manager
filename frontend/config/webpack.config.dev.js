@@ -17,6 +17,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -150,6 +151,10 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat',
+      // Not necessary unless you consume a module using `createClass`
+      'create-react-class': 'preact-compat/lib/create-react-class'
     },
     plugins: [
       // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -341,6 +346,8 @@ module.exports = {
       inject: true,
       template: paths.appHtml,
     }),
+    // new BundleAnalyzerPlugin(),
+    
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
