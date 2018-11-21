@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import AllPosts from "../../component/AllPosts/AllPosts";
 import * as actions from "../../store/action/posts";
 import { updatedObject, checkValidity, formControls } from "../../shared/utility";
+import LazyLoading from '../../hoc/LazyLoading/LazyLoading';
 import "./Home.css";
 
-const Modal = React.lazy(() => import("../../component/UI/Modal/Modal"));
+const Modal = LazyLoading(() => import("../../component/UI/Modal/Modal"));
+
+// const Modal = React.lazy(() => import("../../component/UI/Modal/Modal")); // because of Preact,it doesn't know lazy
 
 class Home extends Component {
   state = {
