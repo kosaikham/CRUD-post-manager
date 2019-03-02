@@ -7,7 +7,7 @@ const users = require("./routes/user");
 const posts = require("./routes/post");
 
 mongoose
-  .connect(config.PDB, { useNewUrlParser: true })
+  .connect(config.DB, { useNewUrlParser: true })
   .then(
     () => console.log("Db connected"),
     err => console.log("DB connect Fail")
